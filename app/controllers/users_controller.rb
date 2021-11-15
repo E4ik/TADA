@@ -7,7 +7,7 @@ class UsersController < ActionController::Base
     
         clean_params = params.require(:user).permit(:username, :password, :mail)
         @user = User.new(clean_params)
-
+        # 
 
         if @user.save
             redirect_to "/"
@@ -15,4 +15,20 @@ class UsersController < ActionController::Base
             render :"sign_up"
         end
     end
+
+    def sign_in 
+        @user = User.new
+    end
+
+    def check
+        u = User.login(params[:user])
+        if u
+          render html: "ok"
+        else
+          render html: "no user"
+        end
+      end
+
+
+
 end
