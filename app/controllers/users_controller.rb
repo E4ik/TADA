@@ -7,7 +7,7 @@ class UsersController < ActionController::Base
     
         clean_params = params.require(:user).permit(:username, :password, :mail)
         @user = User.new(clean_params)
-        # 
+        #清除格式
 
         if @user.save
             redirect_to "/"
